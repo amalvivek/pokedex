@@ -21,8 +21,6 @@ public class PokedexController {
     @Get("/{name}")
     @Produces(MediaType.APPLICATION_JSON)
     public CompletionStage<HttpResponse<Pokemon>> getPokemon(@PathVariable String name) {
-        System.out.println("IN HERE");
-        System.out.println(name);
         return pokemonService.fetchPokemon(name).thenApply(HttpResponse::ok);
     }
 }

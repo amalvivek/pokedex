@@ -26,13 +26,10 @@ public class RestClient {
     }
 
     public CompletionStage<JsonNode> sendRequest(HttpRequest req) {
-        System.out.println("REST CLIENT SEND REQUEST");
-        System.out.println(req.uri());
         return this.client.sendAsync(req, BodyHandlers.ofByteArray()).thenApply(this::byteArrayToJson);
     }
 
     public JsonNode byteArrayToJson(HttpResponse<byte[]> resp) {
-        System.out.println("BYTE ARRAY TO JSON");
         try {
             return new ObjectMapper().readTree(resp.body());
         } catch (IOException e) {

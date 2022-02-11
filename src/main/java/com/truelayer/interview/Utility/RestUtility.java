@@ -26,15 +26,18 @@ public class RestUtility {
     }
 
     public static Pokemon constructPokemon(JsonNode json) {
-        System.out.println("CONSTRUCT POKEMON");
         return new Pokemon(json.get("species").get("name").asText(), json.get("species").get("url").asText());
     }
 
     public static Pokemon addSpeciesDetails(JsonNode json, Pokemon pokemon) {
-        pokemon.setDescription(json.get("flavor_text_entries").get(0).get("flavor_text").asText());
+        for (JsonNode n : json.get("flavor_text_entries")) {
+            if (n.get("language").get("name").asText().equals("en")) {
+                pokemon.setDescription(n.get("flavor_text").asText());
+                break;
+            }
+        }
         pokemon.setHabitat(json.get("habitat").get("name").asText());
         pokemon.setLegendary(json.get("is_legendary").asBoolean());
-        System.out.println(pokemon.toString());
         return pokemon;
     }
 
