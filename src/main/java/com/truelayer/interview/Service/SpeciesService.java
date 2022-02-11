@@ -7,10 +7,7 @@ import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
 
 import java.net.URI;
-import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
-
-import static java.net.http.HttpResponse.BodyHandlers;
 
 @Singleton
 public class SpeciesService {
@@ -20,7 +17,7 @@ public class SpeciesService {
 
     public CompletionStage<Pokemon> fetchSpecies(Pokemon pokemon) {
         URI uri = RestUtility.buildUri(pokemon.getSpeciesURL(), "");
-        return client.sendRequest(RestUtility.buildRequest(uri)).thenApply(resp -> RestUtility.addSpeciesDetails(resp, pokemon));
+        return client.sendRequest(RestUtility.buildGetRequest(uri)).thenApply(resp -> RestUtility.addSpeciesDetails(resp, pokemon));
     }
 
 }

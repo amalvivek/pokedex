@@ -8,4 +8,5 @@ netty:
 
 restApi:
   pokemon: https://pokeapi.co/api/v2/pokemon/
-  species: https://pokeapi.co/api/v2/pokemon-species/
+  shakespeare: https://api.funtranslations.com/translate/shakespeare
+  yoda: https://api.funtranslations.com/translate/yoda

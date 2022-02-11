@@ -70,6 +70,10 @@ public class Pokemon {
         isLegendary = legendary;
     }
 
+    public boolean isLegendaryOrLivesInCave() {
+        return (this.isLegendary || this.habitat.equals("cave"));
+    }
+
     @Override
     public String toString() {
         return "Pokemon{" +

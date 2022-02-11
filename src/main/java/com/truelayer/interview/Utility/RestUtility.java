@@ -3,6 +3,7 @@ package com.truelayer.interview.Utility;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.truelayer.interview.Pokemon;
 import io.micronaut.http.uri.UriBuilder;
 import jakarta.inject.Singleton;
@@ -17,8 +18,14 @@ import java.util.Map;
 @Singleton
 public class RestUtility {
 
-    public static HttpRequest buildRequest(URI uri) {
+    public static HttpRequest buildGetRequest(URI uri) {
         return HttpRequest.newBuilder(uri).GET().build();
+    }
+
+    public static HttpRequest buildPostRequest(URI uri, Pokemon p) {
+        ObjectNode o = new ObjectMapper().createObjectNode();
+        o.put("text", p.getDescription());
+        return HttpRequest.newBuilder(uri).POST(HttpRequest.BodyPublishers.ofString(o.toString())).build();
     }
 
     public static URI buildUri(String base, String resource) {
@@ -38,6 +45,13 @@ public class RestUtility {
         }
         pokemon.setHabitat(json.get("habitat").get("name").asText());
         pokemon.setLegendary(json.get("is_legendary").asBoolean());
+        return pokemon;
+    }
+
+    public static Pokemon updateTranslatedDescription(JsonNode json, Pokemon pokemon) {
+        if (json.get("contents").get("translated").isTextual()) {
+            pokemon.setDescription(json.get("contents").get("translated").asText());
+        }
         return pokemon;
     }
 
