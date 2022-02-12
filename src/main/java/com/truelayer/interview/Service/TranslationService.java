@@ -23,7 +23,6 @@ public class TranslationService {
     private String yoda;
 
     public CompletionStage<Pokemon> translateDescription(Pokemon pokemon) {
-
         URI uri = RestUtility.buildUri((pokemon.isLegendaryOrLivesInCave()) ? yoda : shakespeare, "");
         return client
                 .sendRequest(RestUtility.buildPostRequest(uri, pokemon))

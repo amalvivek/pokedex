@@ -2,7 +2,7 @@ package com.truelayer.interview.Controller;
 
 import com.truelayer.interview.Pokemon;
 import com.truelayer.interview.Service.PokemonService;
-import io.micronaut.http.HttpResponse;
+import io.micronaut.http.MutableHttpResponse;
 import io.micronaut.test.annotation.MockBean;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
 import jakarta.inject.Inject;
@@ -35,7 +35,7 @@ class PokedexControllerTest {
         p.setLegendary(true);
         when(pokemonService.fetchPokemon(anyString())).thenReturn(CompletableFuture.completedFuture(p));
 
-        CompletionStage<HttpResponse<Pokemon>> pokemonCompletableFuture = pokedexController.getPokemon("name");
+        CompletionStage<MutableHttpResponse<Pokemon>> pokemonCompletableFuture = pokedexController.getPokemon("name");
         Pokemon resp = pokemonCompletableFuture.toCompletableFuture().get().body();
         assertEquals(p.toString(), resp.toString());
         verify(pokemonService, times(1)).fetchPokemon(anyString());
