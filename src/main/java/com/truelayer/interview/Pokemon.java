@@ -1,6 +1,5 @@
 package com.truelayer.interview;
 
-import io.micronaut.core.annotation.Introspected;
 import io.micronaut.serde.annotation.Serdeable;
 
 
@@ -68,10 +67,6 @@ public class Pokemon {
 
     public void setLegendary(boolean legendary) {
         isLegendary = legendary;
-    }
-
-    public boolean isLegendaryOrLivesInCave() {
-        return (this.isLegendary || this.habitat.equals("cave"));
     }
 
     @Override
