@@ -1,4 +1,4 @@
-package com.truelayer.interview.Client;
+package com.truelayer.interview.client;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;

@@ -1,4 +1,4 @@
-package com.truelayer.interview.Utility;
+package com.truelayer.interview.utility;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -55,7 +55,7 @@ public class RestUtility {
 
     public static MutableHttpResponse<Pokemon> handleException(Throwable t) {
         if (t.getCause() instanceof HttpStatusException) {
-            return io.micronaut.http.HttpResponse.status(((HttpStatusException) t.getCause()).getStatus(), t.getCause().getMessage());
+            return HttpResponse.status(((HttpStatusException) t.getCause()).getStatus(), t.getCause().getMessage());
         }
         return HttpResponse.serverError();
     }

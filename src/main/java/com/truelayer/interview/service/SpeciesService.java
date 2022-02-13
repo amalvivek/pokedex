@@ -1,8 +1,8 @@
-package com.truelayer.interview.Service;
+package com.truelayer.interview.service;
 
-import com.truelayer.interview.Client.RestClient;
+import com.truelayer.interview.client.RestClient;
 import com.truelayer.interview.Pokemon;
-import com.truelayer.interview.Utility.RestUtility;
+import com.truelayer.interview.utility.RestUtility;
 import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
 
